@@ -83,9 +83,17 @@ openstack server show d88ef579-fa90-497a-9c1a-bd770f0f75f8  -f value
 ssh接続します(管理ノードのみ)
 
 ```bash
-openstack server ssh -4 --login root --port 10022 --identity ./admin-node-root-id_rsa --option 'HostName=133.130.ab.cd -o Port=22 -o StrictHostKeyChecking=no -o User=root' --address-type=private d88ef579-fa90-497a-9c1a-bd770f0f75f8
+openstack server ssh -4 --login root --port 10022 \
+  --identity ./admin-node-root-id_rsa \
+  --option 'HostName=133.130.ab.cd -o Port=22 -o StrictHostKeyChecking=no -o User=root' \
+  --address-type=private d88ef579-fa90-497a-9c1a-bd770f0f75f8
 ```
 作業端末からのssh key loginの設定をしていない場合、管理ノードへのssh パスワードがプロンプトがでます。
+
+  * 133.130.ab.cd : 最初に作られるpublic IP (GMO AppsCloud サービスごとの固定値です)
+  * --option 'オプション' : ssh接続時のオプション(動作は --debug で確認できる)
+  * --address-type=private : アプリクラウドはfloating IPが無いので、内部のL4側IPはPrivateネットワーク指定となります
+  * --identify "private key path" : private keyは管理ノードのrootから取ってきます。
 
 
 # スクリブとの中身
