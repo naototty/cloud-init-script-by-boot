@@ -23,7 +23,8 @@ OSC(OpenStack client)などで作成します。
 curlで取得して、スクリプトを設置します。
 
 ```bash
-curl https://raw.githubusercontent.com/naototty/cloud-init-script-by-boot/master/01exp-keep-authorized_keys.sh -o /var/lib/cloud/scripts/per-boot/01exp-keep-authorized_keys.sh
+curl https://raw.githubusercontent.com/naototty/cloud-init-script-by-boot/master/01exp-keep-authorized_keys.sh \
+  -o /var/lib/cloud/scripts/per-boot/01exp-keep-authorized_keys.sh
 
 chmod 755 /var/lib/cloud/scripts/per-boot/01exp-keep-authorized_keys.sh
 ```
