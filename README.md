@@ -39,6 +39,54 @@ mkdir -p /var/lib/cloud/tmp
 cp /root/my-additional-root-authorized_keys  /var/lib/cloud/tmp/root-authorized_keys
 ```
 
+## イメージ保存します
+
+privateイメージを保存します。
+
+```bash
+openstack server image create --wait --name u1404-cloud-init-test02 2682d12f-a50e-4e8f-a517-540ac2548b29 -f json
+```
+
+  * 2682d12f-a50e-4e8f-a517-540ac2548b29 : vmのインスタンスID
+  * u1404-cloud-init-test02 : private image保存名称
+
+privateイメージを確認します。
+
+```bash
+openstack image list --private -f value
+```
+
+## 保存したprivate imageでvmを作成します
+
+先ほど作成したイメージを指定して、vmを作成します
+
+```bash
+openstack server create --image u1404-cloud-init-test02 --flavor L-0102_D new-u1404-4 -f yaml
+```
+
+responseがこの場合、yamlで
+  id:
+が server idとなる
+
+
+## ssh接続を管理ノード経由で行います
+
+
+出来たvmを確認します
+
+```bash
+openstack server list -f value
+
+openstack server show d88ef579-fa90-497a-9c1a-bd770f0f75f8  -f value
+```
+
+ssh接続します(管理ノードのみ)
+
+```bash
+openstack server ssh -4 --login root --port 10022 --identity ./admin-node-root-id_rsa --option 'HostName=133.130.ab.cd -o Port=22 -o StrictHostKeyChecking=no -o User=root' --address-type=private d88ef579-fa90-497a-9c1a-bd770f0f75f8
+```
+作業端末からのssh key loginの設定をしていない場合、管理ノードへのssh パスワードがプロンプトがでます。
+
 
 # スクリブとの中身
 
