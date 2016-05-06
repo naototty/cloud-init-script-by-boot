@@ -261,7 +261,7 @@ openstack server ssh -4 --login root --port 10022 \
   * --identify "private key path" : private keyは管理ノードのrootから取ってきます。
 
 
-# スクリブとの中身
+# スクリプトの中身
 
 あまり大したことはしていません。
 
