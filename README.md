@@ -37,10 +37,10 @@ $ echo '. /usr/bin/virtualenvwrapper.sh'  >> ~/.bashrc
 $ . /usr/bin/virtualenvwrapper.sh
 ```
 
-virtualenv名“copenstack”でここでは作ります。(各自お好きなように)
+virtualenv名“openstack”でここでは作ります。(各自お好きなように)
 
 ```bash
-$ mkvirtualenv conohacloud
+$ mkvirtualenv openstack
 ```
 
 この時点で、virtualenv “copenstack”に切り替わって、プロンプトがかわります
